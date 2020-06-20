@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country API</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+  </head>
+  <body>
+    <div id="root">
+      <div class="search">
+        <form v-on:submit.prevent class="w3-container">
+          <p>
+            <input
+              placeholder="Searh Country"
+              class="w3-input"
+              type="text"
+              @input="search"
+              @change="search"
+            />
+          </p>
+        </form>
+      </div>
+      <div v-if="favorite.length > 0">
+        <hr />
+        <h4 class="favTitle">Favorite 💘</h4>
+        <div class="main">
+          <div v-for="fav in favorite" class="card">
+            <img :src="fav.flag" :alt="fav.name" style="width: 100%;" />
+            <div class="container">
+              <h4>
+                <b>{{fav.name}}</b>
+              </h4>
+              <p>{{fav.nativeName}}</p>
+             
+            </div>
+          </div>
+        </div>
+
+        <hr />
+      </div>
+
+      <div class="main">
+        <div v-for="country in countries" class="card">
+          <img :src="country.flag" :alt="country.name" style="width: 100%;" />
+          <div class="container">
+            <h4>
+              <b>{{country.name}}</b>
+            </h4>
+            <p>{{country.nativeName}}</p>
+            <p v-on:click="likeCountry(country)">
+              💟
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
